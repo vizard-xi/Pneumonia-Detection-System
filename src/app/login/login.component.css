@@ -1,0 +1,28 @@
+mat-card-title {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginFormCard {
+  width: 400px;
+}
+
+button{
+  width: 30%;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
