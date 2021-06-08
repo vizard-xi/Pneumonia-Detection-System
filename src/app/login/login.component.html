@@ -1,0 +1,38 @@
+<div class="loginForm">
+  <mat-card class="loginFormCard">
+    <mat-card-title>Login</mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="loginInputForm" (ngSubmit)="onSubmit()">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput required formControlName="email" class="loginInputBox" [(ngModel)]="loginForm.email">
+            <mat-error>{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput required formControlName="password" [type]="hidePassword ? 'password' : 'text'"
+            class="loginInputBox" [(ngModel)]="loginForm.password">
+
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+        </p>
+      </form>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="loadSignUpPage()">Signup</button>
+      <button mat-raised-button  type="submit" [disabled]="!loginInputForm.valid">Login</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
+

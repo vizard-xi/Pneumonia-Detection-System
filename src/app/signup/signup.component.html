@@ -1,0 +1,66 @@
+<div class="signUpForm">
+  <mat-card class="signUpFormCard">
+    <mat-card-title>SignUp</mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="signUpInputForm" (ngSubmit)="onSubmit()">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput required formControlName="name" class="signUpInputBox" [(ngModel)]="signUpForm.name">
+        </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber" class="signUpInputBox" [(ngModel)]="signUpForm.phoneNumber">
+            <mat-error></mat-error>
+        </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput required formControlName="email" class="signUpInputBox" [(ngModel)]="signUpForm.email">
+            <mat-error>{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput required formControlName="password" [type]="hidePassword ? 'password' : 'text'"
+            class="loginInputBox" [(ngModel)]="signUpForm.password">
+
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput required formControlName="confirmPassword" [type]="hidePassword ? 'password' : 'text'"
+            class="loginInputBox" [(ngModel)]="signUpForm.confirmPassword">
+
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+        </p>
+      </form>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="cancelSignUp()">Cancel</button>
+      <button mat-raised-button (click)="loadSignUp()" type="submit" [disabled]="!signUpInputForm.valid">SignUp</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
+
