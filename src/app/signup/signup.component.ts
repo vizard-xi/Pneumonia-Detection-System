@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Signup } from '../utils/classes/signup';
 
@@ -10,7 +11,10 @@ import { Signup } from '../utils/classes/signup';
 })
 export class SignupComponent implements OnInit {
 
+  snackBarDurationInSeconds: number = 5;
   hidePassword: boolean = true;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   signUpForm: Signup;
 
   signUpInputForm = new FormGroup({
@@ -23,7 +27,7 @@ export class SignupComponent implements OnInit {
 
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private _snackBar: MatSnackBar) {
     this.signUpForm = new Signup();
    }
 
@@ -63,6 +67,15 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.signUpInputForm.value);
+  }
+
+  openSnackBarForAccountCreation() {
+    this._snackBar.open('Account Created', 'Close', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: this.snackBarDurationInSeconds * 1000,
+      panelClass: ["customStyleForSnackbar"]
+    });
   }
 
 }
