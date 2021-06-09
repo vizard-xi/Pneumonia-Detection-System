@@ -1,0 +1,50 @@
+<mat-toolbar>
+  <span>Pneumonia Detection System</span>
+
+  <span class="dashboard-spacer"></span>
+
+    <span class="material-icons-outlined md-48" [matMenuTriggerFor]="belowMenu">
+      account_circle
+      </span>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+    <mat-list>
+      <mat-list-item>Kelvin Prince</mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>Profile</button>
+    <button mat-menu-item (click)="logout()">
+      Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<div class="dashboard-menu">
+
+  <mat-card class="dashboardCard">
+    <mat-card-title>
+      <h2>Test</h2>
+    </mat-card-title>
+
+    <mat-card-content>
+      <span class="material-icons-outlined size">
+        biotech
+        </span>
+    </mat-card-content>
+  </mat-card>
+
+  <span class="dashboard-card-spacer"></span>
+
+  <mat-card class="dashboardCard">
+    <mat-card-title>
+      <h2>View Patients</h2>
+    </mat-card-title>
+
+    <mat-card-content>
+      <span class="material-icons-outlined size">
+        assignment_ind
+        </span>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

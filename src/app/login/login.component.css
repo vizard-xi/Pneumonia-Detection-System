@@ -1,3 +1,7 @@
+.material-icons-outlined.md-48 {
+  font-size: 32px;
+}
+
 mat-card-title {
   text-align: center;
 }
@@ -26,3 +30,4 @@ mat-card-actions {
   justify-content: center;
   align-items: center;
 }
+

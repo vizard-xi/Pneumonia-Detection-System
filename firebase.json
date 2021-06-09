@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/Pneumonia-Detection-System",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

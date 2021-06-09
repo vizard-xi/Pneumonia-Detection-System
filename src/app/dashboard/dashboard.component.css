@@ -1,0 +1,38 @@
+.dashboard-spacer {
+  flex: 1 1 auto;
+}
+
+.dashboard-card-spacer {
+  flex: 0.5 1 auto;
+}
+
+.material-icons-outlined.md-48 {
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.dashboard-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.dashboardCard {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
+.dashboardCard:hover {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+	transition-property: transform;
+	transition-delay: 0.1s;
+	transform: scale(1.1);
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.material-icons-outlined.size {
+  font-size: 100px;
+}
