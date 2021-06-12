@@ -22,6 +22,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClientTestFormComponent } from './dashboard/client-test-form/client-test-form.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { ClientTestFormComponent } from './dashboard/client-test-form/client-tes
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
+
     MatToolbarModule,
     MatMenuModule,
     MatListModule,

@@ -26,7 +26,6 @@ export class SignupComponent implements OnInit {
   });
 
 
-
   constructor(private router: Router, private _snackBar: MatSnackBar, private httpRequestsService: HttpRequestsService) {
     this.signUpForm = new UserDetails();
    }
