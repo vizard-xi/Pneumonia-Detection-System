@@ -39,19 +39,6 @@
             <mat-error>{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
         </p>
-
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Confirm Password</mat-label>
-            <input matInput required formControlName="confirmPassword" [type]="hidePassword ? 'password' : 'text'"
-            class="loginInputBox" [(ngModel)]="signUpForm.confirmPassword">
-
-            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error>{{getPasswordErrorMessage()}}</mat-error>
-        </mat-form-field>
-        </p>
       </form>
 
     </mat-card-content>
