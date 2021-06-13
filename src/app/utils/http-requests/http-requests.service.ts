@@ -9,12 +9,12 @@ import { Observable, throwError } from 'rxjs';
 export class HttpRequestsService {
 
 
-  apiURL = 'http://localhost:8080/api/';
+  apiURL = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
 
   postRequest(endpoint: string, data: any): Observable<any>{
-    return this.http.post<any>(this.apiURL + endpoint, data)
+    return this.http.post<any>(this.apiURL + '/' + endpoint, data)
     .pipe(
       catchError(this.handleError)
     );

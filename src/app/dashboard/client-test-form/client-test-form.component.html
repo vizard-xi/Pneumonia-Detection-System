@@ -1,40 +1,75 @@
 <div class="clientTestForm">
-  <mat-card class="clientTestFormFormCard">
+  <mat-card class="clientTestFormCard" *ngIf="clientTestAnalysesForm">
     <mat-card-title>
-      <h2>Login</h2>
+      <h2>Client Test</h2>
     </mat-card-title>
 
     <mat-card-content>
-      <form>
+      <form [formGroup]="clientTestInputForm" (ngSubmit)="onSubmit()">
         <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput required formControlName="email" class="clientTestInputBox">
+          <mat-form-field appearance="fill">
+            <mat-label>Client Name</mat-label>
+            <input matInput required formControlName="clientName" class="clientTestInputBox" [(ngModel)]="clientTestForm.clientName">
         </mat-form-field>
         </p>
 
         <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Age</mat-label>
-            <input matInput required formControlName="password" class="clientTestInputBox">
-        </mat-form-field>
+          <mat-form-field appearance="fill" class="example-form-field">
+            <mat-label>Client DOB</mat-label>
+            <input matInput [matDatepicker]="datepicker" required formControlName="clientDOB" class="clientTestInputBox" [(ngModel)]="clientTestForm.clientDOB">
+            <mat-datepicker-toggle matSuffix [for]="datepicker" ></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
         </p>
 
         <p>
-
+          <mat-form-field appearance="fill">
+            <mat-label>Client Gender</mat-label>
+            <mat-select formControlName="clientGender" [(ngModel)]="clientTestForm.clientGender" required>
+              <mat-option *ngFor="let gender of genders" [value]="gender" >
+                {{gender}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </p>
+
+        <p>
+            <input  #fileInput type="file" class="file-input" (change)="handleFileInput(fileInput)" formControlName="clientTestImage" [(ngModel)]="clientTestForm.clientTestImage" required>
+            <mat-icon (click)="fileInput.click()" style="cursor: pointer;">attach_file</mat-icon>
+        </p>
+
       </form>
 
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-raised-button>Signup</button>
-      <button mat-raised-button>
-        <span class="material-icons-outlined">
-        login
-        </span>Login</button>
+      <button mat-raised-button (click)="onNoClick()">Cancel</button>
+      <button mat-raised-button type="submit" (click)="clientTestAnalyses()" [disabled]="!clientTestInputForm.valid">Analyse</button>
     </mat-card-actions>
 
   </mat-card>
-</div>
 
+  <span class="client-test-card-spacer"></span>
+
+  <mat-card class="clientTestFormCard" *ngIf="clientTestAnalysesPreview">
+    <mat-card-title>
+      <h2>Test Results</h2>
+    </mat-card-title>
+
+    <mat-card-content>
+      <h2>Positive</h2>
+      <img class="testResultsImage" mat-card-image [src]="imageURL">
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="saveTestResults()">Save Test Results</button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</div>
