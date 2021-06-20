@@ -19,6 +19,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClientTestFormComponent } from './dashboard/client-test-form/client-test-form.component';
@@ -41,13 +43,14 @@ import { ClientTestFormComponent } from './dashboard/client-test-form/client-tes
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
-
     MatToolbarModule,
     MatMenuModule,
     MatListModule,
     MatDividerModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
