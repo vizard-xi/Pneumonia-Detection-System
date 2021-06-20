@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import { ClientTestFormComponent } from './client-test-form/client-test-form.component';
+import { Login } from '../utils/classes/Login/login';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +11,14 @@ import { ClientTestFormComponent } from './client-test-form/client-test-form.com
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router, public dialog: MatDialog) { }
+  userDetails: any;
+
+  constructor(private router: Router, public dialog: MatDialog) {
+   }
 
   ngOnInit(): void {
+    this.userDetails = localStorage.getItem("userDetails");
+    this.userDetails = JSON.parse(this.userDetails);
   }
 
   openDialog() {
@@ -23,6 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout(){
+    localStorage.removeItem("userDetails");
     this.router.navigate(['/login']);
   }
 

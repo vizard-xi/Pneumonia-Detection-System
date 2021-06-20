@@ -21,6 +21,7 @@ export class ClientTestFormComponent implements OnInit {
   snackBarDurationInSeconds: number = 5;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  userDetails: any;
 
   clientTestInputForm = new FormGroup({
     clientName : new FormControl('', [Validators.required]),
@@ -33,14 +34,11 @@ export class ClientTestFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ClientDetails, private httpRequestsService: HttpRequestsService,
     private _snackBar: MatSnackBar) {
     this.clientTestForm = new ClientDetails();
+    this.userDetails = localStorage.getItem("userDetails");
+    this.userDetails = JSON.parse(this.userDetails);
    }
 
   ngOnInit(): void {
-  }
-
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.clientTestInputForm.value);
   }
 
   handleFileInput(fileInput: any) {
@@ -64,7 +62,6 @@ export class ClientTestFormComponent implements OnInit {
   }
 
   saveTestResults() {
-    console.log(this.clientTestForm)
     this.httpRequestsService.postRequest('clientDetails', this.clientTestForm).subscribe();
     this.onNoClick();
     this._snackBar.open('Test Results Saved', 'Close', {
