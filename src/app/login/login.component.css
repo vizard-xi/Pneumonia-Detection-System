@@ -31,3 +31,8 @@ mat-card-actions {
   align-items: center;
 }
 
+::ng-deep .customStyleForSnackbar{
+  background-color:white;
+  color:black;
+}
+

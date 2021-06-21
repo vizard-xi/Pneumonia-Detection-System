@@ -64,11 +64,6 @@ export class SignupComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.signUpInputForm.value);
-  }
-
   openSnackBarForAccountCreation() {
     this._snackBar.open('Account Created', 'Close', {
       horizontalPosition: this.horizontalPosition,
