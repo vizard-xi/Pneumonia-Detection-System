@@ -11,14 +11,13 @@
       <mat-list-item>{{userDetails.name}}</mat-list-item>
     </mat-list>
     <mat-divider></mat-divider>
-    <button mat-menu-item>Profile</button>
     <button mat-menu-item (click)="logout()">
       Logout
     </button>
   </mat-menu>
 </mat-toolbar>
 
-<div class="dashboard-menu">
+<!-- <div class="dashboard-menu">
 
   <mat-card class="dashboardCard" (click)="openDialog()">
     <mat-card-title>
@@ -47,4 +46,75 @@
 
   </mat-card>
 
-</div>
+</div> -->
+
+<mat-tab-group mat-align-tabs="center">
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="material-icons-outlined md-48" (click)="getClientData()">
+        assignment_ind
+        </span>
+    </ng-template>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter by Name" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.clientDetailsID}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.clientName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+          <td mat-cell *matCellDef="let row"> {{row.clientDOB}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+          <td mat-cell *matCellDef="let row"> {{row.clientGender}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="material-icons-outlined md-48">
+        biotech
+      </span>
+    </ng-template>
+    <app-client-test-form></app-client-test-form>
+  </mat-tab>
+
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="material-icons-outlined md-48">
+        account_circle
+      </span>
+    </ng-template>
+
+  </mat-tab>
+</mat-tab-group>

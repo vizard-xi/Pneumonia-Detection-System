@@ -21,9 +21,7 @@ export class HttpRequestsService {
   }
 
   getRequest(endpoint: string): Observable<any>{
-    return this.http.get<any>(this.apiURL + '/'  + endpoint, {
-      headers:
-      { header: "Access-Control-Allow-Origin: *" }}).pipe(
+    return this.http.get<any>(this.apiURL + '/'  + endpoint).pipe(
       catchError(this.handleError)
     );
   }
