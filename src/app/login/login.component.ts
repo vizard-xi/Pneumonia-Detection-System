@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
   loadDashboard(){
     this.httpRequestsService.getRequest('userDetails').subscribe((data: any) => {
       data.forEach((user: any) => {
-        if (this.loginForm.email == user.email) {
+        if (this.loginForm.email.match(user.email)) {
           if (user.email == this.loginForm.email && user.password == this.loginForm.password) {
             this.userLoginValidation(user, "Valid Email & Password");
           } else if (user.email == this.loginForm.email && user.password != this.loginForm.password) {

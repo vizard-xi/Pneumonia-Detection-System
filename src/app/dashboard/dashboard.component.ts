@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import { ClientTestFormComponent } from './client-test-form/client-test-form.component';
-import { Login } from '../utils/classes/Login/login';
+import { HttpRequestsService } from 'src/app/utils/http-requests/http-requests.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,17 +15,34 @@ import { Login } from '../utils/classes/Login/login';
 export class DashboardComponent implements OnInit {
 
   userDetails: any;
+  clientDetails!: any[];
+  dataSource!: MatTableDataSource<any>;
+  displayedColumns: String[] = ['id', 'name', 'dob', 'gender', 'image'];
 
-  constructor(private router: Router, public dialog: MatDialog) {
+  @ViewChild(MatPaginator)paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  clients!: any[];
+
+  constructor(private router: Router, public dialog: MatDialog, private httpRequestsService: HttpRequestsService) {
+
    }
 
   ngOnInit(): void {
     this.userDetails = localStorage.getItem("userDetails");
     this.userDetails = JSON.parse(this.userDetails);
+    this.httpRequestsService.getRequest(`userDetails/${this.userDetails.userID}/clientDetails`).subscribe(
+      (clients: any) => {
+        this.dataSource = new MatTableDataSource(clients);
+      });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ClientTestFormComponent, {
+    this.dialog.open(ClientTestFormComponent, {
       width: 'auto',
       height: 'auto'
     });
@@ -33,4 +53,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }

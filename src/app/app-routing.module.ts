@@ -4,6 +4,7 @@ import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClientTestFormComponent } from './dashboard/client-test-form/client-test-form.component';
+import { AuthGuardService as AuthGuard } from './utils/services/auth-guard-service/auth-guard-service.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

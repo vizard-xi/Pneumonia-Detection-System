@@ -62,7 +62,7 @@ export class ClientTestFormComponent implements OnInit {
   }
 
   saveTestResults() {
-    this.httpRequestsService.postRequest('clientDetails', this.clientTestForm).subscribe();
+    this.httpRequestsService.postRequest(`userDetails/${this.userDetails.userID}/clientDetails`, this.clientTestForm).subscribe();
     this.onNoClick();
     this._snackBar.open('Test Results Saved', 'Close', {
       horizontalPosition: this.horizontalPosition,
