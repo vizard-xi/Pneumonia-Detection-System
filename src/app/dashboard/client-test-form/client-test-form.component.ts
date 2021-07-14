@@ -17,9 +17,10 @@ export class ClientTestFormComponent implements OnInit {
   clientTestForm: ClientDetails;
   clientTestAnalysesForm: boolean = true;
   clientTestAnalysesPreview: boolean = false;
+  clientTestAnalysesSuccessful: boolean = false;
   imageURL: any;
   snackBarDurationInSeconds: number = 5;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   userDetails: any;
 
@@ -30,8 +31,7 @@ export class ClientTestFormComponent implements OnInit {
     clientTestImage : new FormControl('', [Validators.required])
   });
 
-  constructor( public dialogRef: MatDialogRef<ClientTestFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ClientDetails, private httpRequestsService: HttpRequestsService,
+  constructor( private httpRequestsService: HttpRequestsService,
     private _snackBar: MatSnackBar) {
     this.clientTestForm = new ClientDetails();
     this.userDetails = localStorage.getItem("userDetails");
@@ -52,24 +52,41 @@ export class ClientTestFormComponent implements OnInit {
     };
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   clientTestAnalyses() {
-    this.clientTestAnalysesPreview = true
+    this.clientTestAnalysesPreview = true;
     this.clientTestAnalysesForm = false;
   }
 
   saveTestResults() {
-    this.httpRequestsService.postRequest('clientDetails', this.clientTestForm).subscribe();
-    this.onNoClick();
+    this.httpRequestsService.postRequest(`userDetails/${this.userDetails.userID}/clientDetails`, this.clientTestForm).subscribe();
     this._snackBar.open('Test Results Saved', 'Close', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.snackBarDurationInSeconds * 1000,
       panelClass: ["customStyleForSnackbar"]
     });
+    this.clientTestAnalysesPreview = false;
+    this.clientTestAnalysesForm = false;
+    this.clientTestAnalysesSuccessful = true;
+    let timer = 5;
+    let countDownTimer = setInterval(() => {
+      timer = timer - 1;
+      console.log(timer);
+
+      if (timer === 0) {
+        this.clientTestAnalysesForm = true;
+        this.clientTestAnalysesPreview = false;
+        this.clientTestAnalysesSuccessful = false;
+        this.clientTestForm.clientDOB = new Date();
+        this.clientTestForm.clientGender = "";
+        this.clientTestForm.clientName = "";
+        this.clientTestForm.clientTestImage = null;
+        this.clientTestInputForm.reset;
+        clearInterval(countDownTimer);
+      }
+    }, 1000);
+
+
   }
 
 }

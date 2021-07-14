@@ -45,7 +45,7 @@
 
     <mat-card-actions>
       <button mat-raised-button (click)="cancelSignUp()">Cancel</button>
-      <button mat-raised-button (click)="loadSignUp(); openSnackBarForAccountCreation()" type="submit" [disabled]="!signUpInputForm.valid">SignUp</button>
+      <button mat-raised-button (click)="createAccount()" type="submit" [disabled]="!signUpInputForm.valid">SignUp</button>
     </mat-card-actions>
 
   </mat-card>

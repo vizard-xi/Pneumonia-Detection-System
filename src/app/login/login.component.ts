@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Login } from '../utils/classes/Login/login';
 import { HttpRequestsService } from '../utils/http-requests/http-requests.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { AuthService } from '../utils/services/auth-service/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
   loginForm: Login;
   snackBarDurationInSeconds: number = 3;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   loginInputForm = new FormGroup({
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private router: Router, private httpRequestsService: HttpRequestsService,
-    private _snackBar: MatSnackBar) {
+    private _snackBar: MatSnackBar, private authService :AuthService) {
     this.loginForm = new Login();
    }
 
@@ -95,8 +96,9 @@ export class LoginComponent implements OnInit {
 
   loadDashboard(){
     this.httpRequestsService.getRequest('userDetails').subscribe((data: any) => {
-      data.forEach((user: any) => {
-        if (this.loginForm.email == user.email) {
+
+      data.map((user: any) => {
+        if (this.loginForm.email.match(user.email)) {
           if (user.email == this.loginForm.email && user.password == this.loginForm.password) {
             this.userLoginValidation(user, "Valid Email & Password");
           } else if (user.email == this.loginForm.email && user.password != this.loginForm.password) {
@@ -109,11 +111,6 @@ export class LoginComponent implements OnInit {
         }
       });
     });
-  }
-
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.loginInputForm.value);
   }
 
 }

@@ -4,6 +4,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { Router } from '@angular/router';
 import { HttpRequestsService } from '../utils/http-requests/http-requests.service';
 import { UserDetails } from '../utils/classes/SignUp/signup';
+import { AccountCreationStatus } from '../utils/enums/account-creation-status.enum';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,7 @@ export class SignupComponent implements OnInit {
 
   snackBarDurationInSeconds: number = 5;
   hidePassword: boolean = true;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   signUpForm: UserDetails;
 
@@ -59,13 +60,19 @@ export class SignupComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  loadSignUp(){
-    this.httpRequestsService.postRequest('/userDetails', this.signUpForm).subscribe();
-    this.router.navigate(['/login']);
+  createAccount(){
+    this.httpRequestsService.postRequest('userDetails', this.signUpForm).subscribe((data: any) => {
+      if(data == "CREATED") {
+        this.openSnackBarForAccountCreation(AccountCreationStatus.Successful)
+        this.router.navigate(['/login']);
+      } else {
+        this.openSnackBarForAccountCreation(AccountCreationStatus.Failed)
+      }
+    })
   }
 
-  openSnackBarForAccountCreation() {
-    this._snackBar.open('Account Created', 'Close', {
+  openSnackBarForAccountCreation(message: string) {
+    this._snackBar.open(message, 'Close', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       duration: this.snackBarDurationInSeconds * 1000,
