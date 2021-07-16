@@ -21,6 +21,7 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.18'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'com.heroku.sdk:heroku-deploy:3.0.3'
 }
 
 test {
