@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 @CrossOrigin
 public class UserDetailsController {
 
@@ -34,18 +34,18 @@ public class UserDetailsController {
     @Autowired
     UserDetailsRepository userDetailsRepository;
 
-    @PostMapping(value = "/userDetails")
+    @PostMapping(value = "userDetails")
     public HttpStatus createUser(@RequestBody UserDetails userDetails) {
-        UserDetails user =  userDetailsRepository.save(userDetails);
+        userDetailsRepository.save(userDetails);
         return HttpStatus.CREATED;
     }
 
-    @GetMapping(value = "/userDetails")
+    @GetMapping(value = "userDetails")
     public List<UserDetails> getAllUserDetails() {
         return userDetailsRepository.findAll();
     }
 
-    @GetMapping(value = "/userDetails/{id}")
+    @GetMapping(value = "userDetails/{id}")
     public ResponseEntity<UserDetails> getUserDetailsByID(@PathVariable(value = "id") Long userDetailsID) throws ResourceNotFoundException {
         UserDetails userDetails = userDetailsRepository.findById(userDetailsID).orElseThrow(
                 () -> new ResourceNotFoundException("User ID:" + userDetailsID + "not found!")
@@ -53,7 +53,7 @@ public class UserDetailsController {
         return ResponseEntity.ok().body(userDetails);
     }
 
-    @PutMapping (value = "/userDetails/{id}")
+    @PutMapping (value = "userDetails/{id}")
     public ResponseEntity<UserDetails> updateUserDetails(@PathVariable(value = "id") Long userDetailsID,
                                                          @RequestBody UserDetails userDetails)
             throws ResourceNotFoundException {
@@ -70,7 +70,7 @@ public class UserDetailsController {
         return ResponseEntity.ok().body(updatedUserDetails);
     }
 
-    @DeleteMapping(path = "/userDetails/{id}")
+    @DeleteMapping(path = "userDetails/{id}")
     public Map<String, Boolean> deleteUserDetails(@PathVariable(value = "id") Long userDetailsID) throws ResourceNotFoundException {
         UserDetails userDetails = userDetailsRepository.findById(userDetailsID).orElseThrow(
                 () -> new ResourceNotFoundException("User ID:" + userDetailsID + "not found!"));
