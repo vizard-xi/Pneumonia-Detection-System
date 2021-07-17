@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 @CrossOrigin
 public class ClientDetailsController {
 
@@ -31,7 +31,7 @@ public class ClientDetailsController {
     @Autowired
     UserDetailsRepository userDetailsRepository;
 
-    @PostMapping(value = "userDetails/{id}/clientDetails")
+    @PostMapping(value = "/userDetails/{id}/clientDetails")
     public ResponseEntity<ClientDetails> createClient(@PathVariable("id") Long userDetailsID,
                                       @RequestBody ClientDetails clientDetails) throws ResourceNotFoundException {
 
@@ -41,13 +41,13 @@ public class ClientDetailsController {
         return  ResponseEntity.ok().body(client);
     }
 
-    @GetMapping(value = "userDetails/clientDetails")
+    @GetMapping(value = "/userDetails/clientDetails")
     public ResponseEntity<List<ClientDetails>> getClientDetails() {
 
         return ResponseEntity.ok(clientDetailsRepository.findAll());
     }
 
-    @GetMapping(value = "userDetails/clientDetails/{id}")
+    @GetMapping(value = "/userDetails/clientDetails/{id}")
     public ResponseEntity<ClientDetails> getClientDetailsByClientID (@PathVariable(value = "id") Long clientID)
             throws ResourceNotFoundException {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(clientID);
@@ -56,7 +56,7 @@ public class ClientDetailsController {
                 .orElseThrow(() -> new ResourceNotFoundException("Client ID: " + clientID + " not found!")));
     }
 
-    @PutMapping(value = "userDetails/clientDetails/{id}")
+    @PutMapping(value = "/userDetails/clientDetails/{id}")
     public ResponseEntity<ClientDetails> updateClientDetails(
             @RequestBody ClientDetails clientDetails,
             @PathVariable(value = "id") Long clientID ) throws ResourceNotFoundException {
@@ -73,7 +73,7 @@ public class ClientDetailsController {
         return ResponseEntity.ok().body(updatedClientDetails);
     }
 
-    @DeleteMapping(value = "userDetails/clientDetails/{id}")
+    @DeleteMapping(value = "/userDetails/clientDetails/{id}")
     public ResponseEntity<ClientDetails> deleteClientDetails(
                                                  @PathVariable(value = "id") Long clientID) throws ResourceNotFoundException {
 
