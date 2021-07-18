@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { environment } from './../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable, throwError } from 'rxjs';
 export class HttpRequestsService {
 
 
-  apiURL = 'http://localhost:8080/api';
+  apiURL = environment.apiURL;
 
   constructor(private http: HttpClient) { }
 
