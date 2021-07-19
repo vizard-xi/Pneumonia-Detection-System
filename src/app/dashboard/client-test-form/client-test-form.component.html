@@ -41,7 +41,7 @@
           <p>
             <input  #fileInput type="file" class="file-input" (change)="handleFileInput(fileInput)" formControlName="clientTestImage" [(ngModel)]="clientTestForm.clientTestImage" required>
             <mat-icon (click)="fileInput.click()" style="cursor: pointer;">attach_file</mat-icon>
-            {{this.imageUploadStatus}}
+            {{imageUploadStatus}}
         </p>
 
       </form>
