@@ -3,7 +3,7 @@
 
   <span class="dashboard-spacer"></span>
 
-    <span class="material-icons-outlined md-48" [matMenuTriggerFor]="belowMenu">
+    <span class="material-icons-outlined md-48" [matMenuTriggerFor]="belowMenu" matTooltip="Profile">
       account_circle
       </span>
   <mat-menu #belowMenu="matMenu" yPosition="below">
@@ -17,42 +17,11 @@
   </mat-menu>
 </mat-toolbar>
 
-<!-- <div class="dashboard-menu">
-
-  <mat-card class="dashboardCard" (click)="openDialog()">
-    <mat-card-title>
-      <h2>Test</h2>
-    </mat-card-title>
-
-    <mat-card-content>
-      <span class="material-icons-outlined size">
-        biotech
-        </span>
-    </mat-card-content>
-  </mat-card>
-
-  <span class="dashboard-card-spacer"></span>
-
-  <mat-card class="dashboardCard">
-    <mat-card-title>
-      <h2>View Patients</h2>
-    </mat-card-title>
-
-    <mat-card-content>
-      <span class="material-icons-outlined size">
-        assignment_ind
-        </span>
-    </mat-card-content>
-
-  </mat-card>
-
-</div> -->
-
 <mat-tab-group mat-align-tabs="center">
 
   <mat-tab>
     <ng-template mat-tab-label>
-      <span class="material-icons-outlined md-48" (click)="getClientData()">
+      <span class="material-icons-outlined md-48" (click)="getClientData()" matTooltip="View Patients">
         assignment_ind
         </span>
     </ng-template>
@@ -100,18 +69,16 @@
 
   <mat-tab>
     <ng-template mat-tab-label>
-      <span class="material-icons-outlined md-48">
+      <span class="material-icons-outlined md-48" matTooltip="Test">
         biotech
       </span>
     </ng-template>
     <app-client-test-form></app-client-test-form>
   </mat-tab>
 
-
-
   <mat-tab>
     <ng-template mat-tab-label>
-      <span class="material-icons-outlined md-48">
+      <span class="material-icons-outlined md-48" matTooltip="Profile Details">
         account_circle
       </span>
     </ng-template>
