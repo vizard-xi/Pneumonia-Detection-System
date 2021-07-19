@@ -38,9 +38,10 @@
           </mat-form-field>
         </p>
 
-        <p>
+          <p>
             <input  #fileInput type="file" class="file-input" (change)="handleFileInput(fileInput)" formControlName="clientTestImage" [(ngModel)]="clientTestForm.clientTestImage" required>
             <mat-icon (click)="fileInput.click()" style="cursor: pointer;">attach_file</mat-icon>
+            {{this.imageUploadStatus}}
         </p>
 
       </form>
@@ -51,7 +52,6 @@
       <button mat-raised-button>Cancel</button>
       <button mat-raised-button type="submit" (click)="clientTestAnalyses()" [disabled]="!clientTestInputForm.valid">Analyse</button>
     </mat-card-actions>
-
   </mat-card>
 
   <span class="client-test-card-spacer"></span>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientDetails } from 'src/app/utils/classes/Client-Details/client-details';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Inject } from '@angular/core';
 import { HttpRequestsService } from 'src/app/utils/http-requests/http-requests.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
@@ -23,6 +21,7 @@ export class ClientTestFormComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   userDetails: any;
+  imageUploadStatus: string = "No Image Selected";
 
   clientTestInputForm = new FormGroup({
     clientName : new FormControl('', [Validators.required]),
@@ -50,6 +49,11 @@ export class ClientTestFormComponent implements OnInit {
       this.imageURL = event.target?.result;
       this.clientTestForm.clientTestImage = this.imageURL;
     };
+    if (this.clientTestForm.clientTestImage == null) {
+      this.imageUploadStatus;
+    } else {
+      this.imageUploadStatus = "Image Uploaded";
+    }
   }
 
   clientTestAnalyses() {
