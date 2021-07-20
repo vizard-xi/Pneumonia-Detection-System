@@ -10,32 +10,37 @@ import { environment } from './../../../environments/environment.prod';
 export class HttpRequestsService {
 
 
-  apiURL = environment.apiURL;
+  javaAPI = environment.javaAPI;
+  pythonAPI = environment.pythonAPI;
 
   constructor(private http: HttpClient) { }
 
-  postRequest(endpoint: string, data: any): Observable<any>{
-    return this.http.post<any>(this.apiURL + '/' + endpoint, data)
+  postRequest(endpoint: string, body: any): Observable<any>{
+    return this.http.post<any>(this.javaAPI + '/' + endpoint, body)
     .pipe(
       catchError(this.handleError)
     );
   }
 
   getRequest(endpoint: string): Observable<any>{
-    return this.http.get<any>(this.apiURL + '/'  + endpoint).pipe(
+    return this.http.get<any>(this.javaAPI + '/'  + endpoint).pipe(
       catchError(this.handleError)
     );
   }
 
-  putRequest(endpoint: string, id: number, data: any): Observable<any>{
-    return this.http.put<any>(this.apiURL + '/' + endpoint + '/' + id, data)
+  putRequest(endpoint: string, id: number, body: any): Observable<any>{
+    return this.http.put<any>(this.javaAPI + '/' + endpoint + '/' + id, body)
     .pipe(
       catchError(this.handleError)
     );
   }
 
   deleteRequest(endpoint: string, id: number): Observable<any>{
-    return this.http.delete<any>(this.apiURL + '/' + endpoint + '/' + id);
+    return this.http.delete<any>(this.javaAPI + '/' + endpoint + '/' + id);
+  }
+
+  postRequestForImageAnalyses(body: any):  Observable<any> {
+    return this.http.post<any>(this.pythonAPI, body);
   }
 
   private handleError(error: HttpErrorResponse) {
