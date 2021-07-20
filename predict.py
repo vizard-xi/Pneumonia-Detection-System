@@ -5,7 +5,6 @@ import tensorflow as tf
 
 from PIL import Image
 import numpy as np
-import sys
 
 try:
     import cv2

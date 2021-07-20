@@ -26,13 +26,7 @@ def index():
 #     - octet-stream image file
 #     - a multipart/form-data with files in the imageData parameter
 @cross_origin('http://localhost:4200')
-@app.route('/image', methods=['POST'])
-@app.route('/<project>/image', methods=['POST'])
-@app.route('/<project>/image/nostore', methods=['POST'])
-@app.route('/<project>/classify/iterations/<publishedName>/image', methods=['POST'])
-@app.route('/<project>/classify/iterations/<publishedName>/image/nostore', methods=['POST'])
-@app.route('/<project>/detect/iterations/<publishedName>/image', methods=['POST'])
-@app.route('/<project>/detect/iterations/<publishedName>/image/nostore', methods=['POST'])
+@app.route('/image-analyses', methods=['POST'])
 def predict_image_handler(project=None, publishedName=None):
     try:
         if 'imageData' in request.files:
