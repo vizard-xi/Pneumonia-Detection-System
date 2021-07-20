@@ -15,13 +15,6 @@ cors = CORS(app)
 # 4MB Max image size limit
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024
 
-
-# Default route just shows simple text
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
 # Like the CustomVision.ai Prediction service /image route handles either
 #     - octet-stream image file
 #     - a multipart/form-data with files in the imageData parameter
