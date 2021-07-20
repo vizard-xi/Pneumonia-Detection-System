@@ -227,8 +227,8 @@ def predict_image(image):
                 truncated_probablity = np.float64(round(p, 8))
                 if truncated_probablity > 1e-8:
                     result.append({
-                        'tagName': label,
-                        'probability': truncated_probablity,
+                        'tagName': label.title(),
+                        'probability': round(truncated_probablity),
                         'tagId': '',
                         'boundingBox': None})
 
