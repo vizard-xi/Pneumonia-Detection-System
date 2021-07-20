@@ -42,6 +42,7 @@ export class ClientTestFormComponent implements OnInit {
 
   handleFileInput(fileInput: any) {
     this.clientTestForm.clientTestImage = fileInput.files[0];
+    this.postRequestToAnalyseImage(this.clientTestForm.clientTestImage);
     const fileReader = new FileReader();
     fileReader.readAsDataURL(this.clientTestForm.clientTestImage);
 
@@ -75,8 +76,6 @@ export class ClientTestFormComponent implements OnInit {
     let timer = 5;
     let countDownTimer = setInterval(() => {
       timer = timer - 1;
-      console.log(timer);
-
       if (timer === 0) {
         this.clientTestAnalysesForm = true;
         this.clientTestAnalysesPreview = false;
@@ -89,8 +88,12 @@ export class ClientTestFormComponent implements OnInit {
         clearInterval(countDownTimer);
       }
     }, 1000);
+  }
 
-
+  postRequestToAnalyseImage(body: any) {
+    this.httpRequestsService.postRequestForImageAnalyses(body).subscribe((data: any) => {
+      console.log(data);
+    })
   }
 
 }
