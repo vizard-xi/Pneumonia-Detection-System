@@ -7,14 +7,14 @@
     <mat-card-content>
       <form [formGroup]="clientTestInputForm">
         <p>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Client Name</mat-label>
             <input matInput required formControlName="clientName" class="clientTestInputBox" [(ngModel)]="clientTestForm.clientName">
         </mat-form-field>
         </p>
 
         <p>
-          <mat-form-field appearance="fill" class="example-form-field">
+          <mat-form-field appearance="outline" class="example-form-field">
             <mat-label>Client DOB</mat-label>
             <input matInput [matDatepicker]="datepicker" required formControlName="clientDOB" class="clientTestInputBox" [(ngModel)]="clientTestForm.clientDOB">
             <mat-datepicker-toggle matSuffix [for]="datepicker" ></mat-datepicker-toggle>
@@ -28,7 +28,7 @@
         </p>
 
         <p>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Client Gender</mat-label>
             <mat-select formControlName="clientGender" [(ngModel)]="clientTestForm.clientGender" required>
               <mat-option *ngFor="let gender of genders" [value]="gender" >

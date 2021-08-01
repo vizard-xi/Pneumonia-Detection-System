@@ -7,6 +7,7 @@ import {LoginComponent} from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -62,6 +63,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     MatTabsModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [

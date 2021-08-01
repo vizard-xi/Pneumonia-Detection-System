@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   displayedColumns: String[] = ['id', 'name', 'dob', 'gender', 'result'];
   clients: any[] = [];
+  hidePassword: boolean = true;
 
   @ViewChild(MatPaginator)paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -66,13 +67,21 @@ export class DashboardComponent implements OnInit {
     this.httpRequestsService.getRequest(`userDetails/${this.userDetails.userID}`).subscribe((clients: any) => {
       clients.clientDetailsList.map((client: any) => {
         delete client.clientTestImage;
-        this.clients.push(client)
-        console.log(this.clients);
-        
+        this.clients.push(client);
       })
       this.dataSource.data = this.clients;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  updateUserDetails() {
+    let body = new Object({
+      "name" : this.userDetails.name,
+      "phoneNumber" : this.userDetails.phoneNumber,
+      "email" : this.userDetails.email,
+      "password" : this.userDetails.password
+    });
+    this.httpRequestsService.putRequest("userDetails", this.userDetails.userID, body).subscribe();
   }
 }

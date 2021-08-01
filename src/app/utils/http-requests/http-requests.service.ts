@@ -10,8 +10,8 @@ import { environment } from './../../../environments/environment.prod';
 export class HttpRequestsService {
 
 
-  javaAPI = environment.javaAPI;
-  pythonAPI = environment.pythonAPI;
+  private javaAPI = environment.javaAPI;
+  private pythonAPI = environment.pythonAPI;
 
   constructor(private http: HttpClient) { }
 
