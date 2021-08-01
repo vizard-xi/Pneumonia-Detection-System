@@ -94,7 +94,7 @@ export class ClientTestFormComponent implements OnInit {
     this.httpRequestsService.postRequestForImageAnalyses(body).subscribe((data: any) => {
       data.map((result: any) => {
         if (result.probability == 1) {
-          this.clientTestForm.clientTestImage = result.tagName
+          this.clientTestForm.clientTestAnalysesResult = result.tagName
         }
       });
     })
