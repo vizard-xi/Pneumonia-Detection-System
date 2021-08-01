@@ -3,4 +3,5 @@ export class ClientDetails {
   clientDOB!: Date;
   clientGender: String = "";
   clientTestImage: any;
+  clientTestAnalysesResult: String = "";
 }
