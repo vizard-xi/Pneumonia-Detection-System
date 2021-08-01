@@ -7,9 +7,6 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { AuthService } from '../utils/services/auth-service/auth-service.service';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { ClientDetails } from 'src/app/utils/classes/Client-Details/client-details';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +18,7 @@ export class DashboardComponent implements OnInit {
   userDetails: any;
   clientDetails!: any[];
   dataSource: MatTableDataSource<any>;
-  displayedColumns: String[] = ['id', 'name', 'dob', 'gender'];
+  displayedColumns: String[] = ['id', 'name', 'dob', 'gender', 'result'];
   clients: any[] = [];
 
   @ViewChild(MatPaginator)paginator!: MatPaginator;
@@ -70,6 +67,8 @@ export class DashboardComponent implements OnInit {
       clients.clientDetailsList.map((client: any) => {
         delete client.clientTestImage;
         this.clients.push(client)
+        console.log(this.clients);
+        
       })
       this.dataSource.data = this.clients;
       this.dataSource.paginator = this.paginator;
