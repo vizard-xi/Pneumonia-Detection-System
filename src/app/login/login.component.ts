@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Login } from '../utils/classes/Login/login';
 import { HttpRequestsService } from '../utils/http-requests/http-requests.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { AuthService } from '../utils/services/auth-service/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,7 @@ import { AuthService } from '../utils/services/auth-service/auth-service.service
 export class LoginComponent implements OnInit {
 
   hidePassword: boolean = true;
-  loginForm: Login;
+  loginForm: Login = new Login();;
   snackBarDurationInSeconds: number = 3;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -25,8 +24,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private router: Router, private httpRequestsService: HttpRequestsService,
-    private _snackBar: MatSnackBar, private authService :AuthService) {
-    this.loginForm = new Login();
+    private _snackBar: MatSnackBar) {
    }
 
   ngOnInit(): void {
@@ -106,8 +104,6 @@ export class LoginComponent implements OnInit {
           }  else if (user.email != this.loginForm.email && user.password == this.loginForm.password) {
             this.userLoginValidation(user, "Invalid Email & Valid Password");
           }
-        } else {
-          this.userLoginValidation(user, "");
         }
       });
     });
