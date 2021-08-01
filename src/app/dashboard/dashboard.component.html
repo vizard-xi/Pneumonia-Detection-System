@@ -83,10 +83,64 @@
 
   <mat-tab>
     <ng-template mat-tab-label>
-      <span class="material-icons-outlined md-48" matTooltip="Profile Details">
-        account_circle
+      <span class="material-icons-outlined md-48" matTooltip="Manage Account">
+          manage_accounts
       </span>
     </ng-template>
 
+    <div class="manageAccount">
+
+      <form class="example-form">
+    
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td><mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="userDetails.name" name="name">
+              </mat-form-field>
+            </td>
+        </tr>
+  
+        <tr>
+          <td><mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Phone Number</mat-label>
+              <input matInput [(ngModel)]="userDetails.phoneNumber" name="phoneNumber">
+            </mat-form-field>
+          </td>
+        </tr>
+  
+        <tr>
+          <td><mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="userDetails.email" name="email">
+            </mat-form-field>
+          </td>
+        </tr>
+  
+        <tr>
+          <td><mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+              <input matInput [(ngModel)]="userDetails.password" name="password" [type]="hidePassword ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <button mat-raised-button (click)="updateUserDetails()" type="submit" style="margin-left: 40%;">
+              <span class="material-icons-outlined">
+                save
+                </span>
+              Save</button>
+          </td>
+        </tr>
+  
+      </table>
+      </form>
+
+    </div>
   </mat-tab>
 </mat-tab-group>
