@@ -16,7 +16,7 @@
         <p>
           <mat-form-field appearance="outline" class="example-form-field">
             <mat-label>Client DOB</mat-label>
-            <input matInput [matDatepicker]="datepicker" required formControlName="clientDOB" class="clientTestInputBox" [(ngModel)]="clientTestForm.clientDOB">
+            <input matInput [max]="today" [matDatepicker]="datepicker" required formControlName="clientDOB" class="clientTestInputBox" [(ngModel)]="clientTestForm.clientDOB">
             <mat-datepicker-toggle matSuffix [for]="datepicker" ></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
               <mat-datepicker-actions>

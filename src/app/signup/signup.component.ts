@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HttpRequestsService } from '../utils/http-requests/http-requests.service';
 import { UserDetails } from '../utils/classes/SignUp/signup';
 import { AccountCreationStatus } from '../utils/enums/account-creation-status.enum';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-signup',
@@ -33,11 +34,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
 
-  }
-
-  passwordMatchValidator(signUpInputForm: FormGroup) {
-    return signUpInputForm.get('password')?.value === signUpInputForm.get('passwordConfirm')?.value
-       ? null : {'mismatch': true};
   }
 
   getEmailErrorMessage() {

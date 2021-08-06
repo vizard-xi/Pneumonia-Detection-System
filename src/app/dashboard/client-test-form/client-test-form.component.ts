@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ClientDetails } from 'src/app/utils/classes/Client-Details/client-details';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpRequestsService } from 'src/app/utils/http-requests/http-requests.service';
@@ -22,6 +22,7 @@ export class ClientTestFormComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   userDetails: any;
   imageUploadStatus: string = "No Image Selected";
+  today = new Date();
 
   clientTestInputForm = new FormGroup({
     clientName : new FormControl('', [Validators.required]),

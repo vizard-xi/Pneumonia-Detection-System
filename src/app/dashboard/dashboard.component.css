@@ -2,8 +2,8 @@
   flex: 1 1 auto;
 }
 
-.dashboard-card-spacer {
-  flex: 0.5 1 auto;
+.dashboard-spacer-client {
+  flex: 0.6 1 auto;
 }
 
 .material-icons-outlined.md-48 {
