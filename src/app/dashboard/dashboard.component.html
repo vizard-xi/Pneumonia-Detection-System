@@ -1,6 +1,10 @@
 <mat-toolbar>
   <span>Pneumonia Detection System</span>
 
+  <span class="dashboard-spacer-client"></span>
+
+  <p>Total Test Performed: {{clients.length}}</p>
+
   <span class="dashboard-spacer"></span>
 
     <span class="material-icons-outlined md-48" [matMenuTriggerFor]="belowMenu" matTooltip="Profile">
@@ -104,7 +108,7 @@
         <tr>
           <td><mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Phone Number</mat-label>
-              <input matInput [(ngModel)]="userDetails.phoneNumber" name="phoneNumber">
+              <input matInput [(ngModel)]="userDetails.phoneNumber" name="phoneNumber" maxlength="10">
             </mat-form-field>
           </td>
         </tr>
