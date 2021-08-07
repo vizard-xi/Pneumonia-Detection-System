@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/Pneumonia-Detection-System",
+    "public": "./angular-frontend/dist/Pneumonia-Detection-System",
     "ignore": [
       "firebase.json",
       "**/.*",
